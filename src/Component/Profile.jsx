@@ -23,7 +23,7 @@ const Profile = ({ textColor, bg }) => {
           className="duration-500 transition-all outline-none mr-1 border border-solid border-gray-300 px-5 py-2 bg-transparent font-bold text-gray-300 uppercase focus:outline-none active:bg-gray-700 hover:bg-gray-300 hover:text-black mt-2 text-xs h-8 mb-4 max-xl:text-3xl max-xl:h-fit max-xl:w-fit max-xl:mt-5"
           onClick={PDF}
         >
-          Download Resume
+          See My Resume
         </button>
       </div>
     </div>
