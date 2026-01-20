@@ -1,51 +1,74 @@
 import React from "react";
-import { Sliders } from 'lucide-react';
+import { Palette, Sun, Moon, Droplet, Sparkles } from 'lucide-react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const Theme = ({ theme, setTheme,bg,textColor }) => {
-  // Function to handle theme change
-  const handleThemeChange = (selectedTheme) => {
-    setTheme(selectedTheme);
-  };
+const Theme = ({ theme, setTheme, themes, currentTheme }) => {
+  const themeOptions = [
+    { id: 'light', name: 'Light', icon: <Sun className="w-5 h-5" />, color: 'text-yellow-500' },
+    { id: 'dark', name: 'Dark', icon: <Moon className="w-5 h-5" />, color: 'text-blue-400' },
+    { id: 'blue', name: 'Ocean', icon: <Droplet className="w-5 h-5" />, color: 'text-blue-500' },
+    { id: 'purple', name: 'Royal', icon: <Sparkles className="w-5 h-5" />, color: 'text-purple-500' },
+  ];
 
   return (
-    <div className={`${bg} ${textColor}shadow-lg shadow-white-500/50 rounded-sm mt-3 ml-3 flex items-center h-20 text-center max-xl:mr-3 max-xl:h-fit`}>
-      <div className="ml-3">
-        <h1 className="text-xl font-medium max-xl:text-6xl">Theme</h1>
-        <p className="max-xl:text-4xl">{theme}</p>
-      </div>
-      <div className="flex items-center ml-auto mr-3">
-        <Sliders className="ml-9 max-xl:ml-10 max-xl:h-12 max-xl:w-12" color={theme === 'Dark' ? 'white' : 'black'} size={20} />
-        <Menu as="div" className="relative inline-block text-center">
-          <div className="max-xl:mr-3">
-            <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm max-xl:text-4xl">
-              Select Theme
-              <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400 max-xl:h-12 max-xl:w-12" />
-            </MenuButton>
+    <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-2xl p-6 mb-6 border ${currentTheme.border}`}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Palette className={`w-7 h-7 ${currentTheme.primary}`} />
+          <div>
+            <h1 className={`text-xl font-bold ${currentTheme.textColor}`}>Theme</h1>
+            <p className={`${currentTheme.main} text-sm capitalize`}>{theme}</p>
           </div>
+        </div>
+        
+        <Menu as="div" className="relative">
+          <MenuButton className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium ${currentTheme.accent} text-white hover:opacity-90 transition-all`}>
+            <Palette className="w-5 h-5" />
+            Change Theme
+            <ChevronDownIcon className="w-5 h-5" />
+          </MenuButton>
 
-          <MenuItems
-            transition
-            className="absolute z-10 mt-2 left-0 right-0 mx-auto w-auto max-xl:w-auto origin-top divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
-            <div className="py-1">
-              <MenuItem>
-                <span
-                  onClick={() => handleThemeChange('Dark')}
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 max-xl:text-4xl">
-                  Dark
-                </span>
+          <MenuItems className="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none p-1">
+            {themeOptions.map((option) => (
+              <MenuItem key={option.id}>
+                <button
+                  onClick={() => setTheme(option.id)}
+                  className={`group flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm transition-all hover:bg-gray-100 ${
+                    theme === option.id ? 'bg-gray-100' : ''
+                  }`}
+                >
+                  <span className={option.color}>{option.icon}</span>
+                  <span className="text-gray-900 font-medium">{option.name}</span>
+                  {theme === option.id && (
+                    <span className="ml-auto w-2 h-2 rounded-full bg-blue-500"></span>
+                  )}
+                </button>
               </MenuItem>
-              <MenuItem>
-                <span
-                  onClick={() => handleThemeChange('Light')}
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 max-xl:text-4xl">
-                  Light
-                </span>
-              </MenuItem>
-            </div>
+            ))}
           </MenuItems>
         </Menu>
+      </div>
+      
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        {themeOptions.map((option) => (
+          <button
+            key={option.id}
+            onClick={() => setTheme(option.id)}
+            className={`flex items-center gap-2 p-3 rounded-lg border transition-all duration-200 ${
+              theme === option.id 
+                ? `${currentTheme.accent} text-white border-transparent` 
+                : `${currentTheme.border} ${
+                    theme === 'dark' 
+                      ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white' 
+                      : 'bg-white text-gray-800 hover:bg-gray-100'
+                  }`
+            }`}
+          >
+            {option.icon}
+            <span className="font-medium">{option.name}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
