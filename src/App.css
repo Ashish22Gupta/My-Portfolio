@@ -2,16 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+  }
+}
+
 .loader-container {
   height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .loader {
   --s: 40px;
   height: calc(var(--s) * 0.9);
   width: calc(var(--s) * 5);
-  --v1: transparent, #000 0.5deg 108deg, #0000 109deg;
-  --v2: transparent, #000 0.5deg 36deg, #0000 37deg;
+  --v1: transparent, #fff 0.5deg 108deg, #0000 109deg;
+  --v2: transparent, #fff 0.5deg 36deg, #0000 37deg;
   -webkit-mask:
     conic-gradient(from 54deg at calc(var(--s) * 0.68) calc(var(--s) * 0.57), var(--v1)),
     conic-gradient(from 90deg at calc(var(--s) * 0.02) calc(var(--s) * 0.35), var(--v2)),
@@ -31,22 +48,59 @@
   }
 }
 
-
-/* For Scrollbar */
+/* Enhanced Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background:white;
+  @apply bg-gray-100 dark:bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 10px;
-  border: 2px solid #f0f0f0;
+  @apply bg-gradient-to-b from-blue-500 to-purple-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color:black;
+  @apply from-blue-600 to-purple-700;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass effect */
+.glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  @apply bg-white/10 dark:bg-black/10;
+}
+
+/* Add to App.css */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.min-w-0 {
+  min-width: 0;
 }
