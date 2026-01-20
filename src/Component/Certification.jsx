@@ -93,6 +93,19 @@ const Certification = ({currentTheme}) => {
         return colorMap[bgColor] || 'dark:bg-gray-800';
     };
 
+    // Get appropriate hover background based on theme
+    const getHoverBackground = () => {
+        if (currentTheme.bg === 'bg-gray-900') {
+            return 'hover:bg-gray-800/70'; // Dark theme
+        } else if (currentTheme.bg === 'bg-blue-50') {
+            return 'hover:bg-blue-100/50'; // Ocean theme
+        } else if (currentTheme.bg === 'bg-purple-50') {
+            return 'hover:bg-purple-100/50'; // Royal theme
+        } else {
+            return 'hover:bg-gray-50'; // Light theme
+        }
+    };
+
     return (
         <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-2xl p-6 mb-6`}>
             <div className="flex items-center gap-3 mb-6">
@@ -106,7 +119,7 @@ const Certification = ({currentTheme}) => {
                 {certifications.map((cert, index) => (
                     <div 
                         key={index} 
-                        className={`p-4 rounded-xl border ${currentTheme.border} hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${currentTheme.bg === 'bg-white' ? 'hover:bg-gray-50' : 'hover:bg-gray-800/50'}`}
+                        className={`p-4 rounded-xl border ${currentTheme.border} hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${getHoverBackground()}`}
                     >
                         <div className="flex items-start gap-4">
                             <div className={`p-3 rounded-xl ${cert.bgColor} ${getDarkModeBg(cert.bgColor)}`}>
