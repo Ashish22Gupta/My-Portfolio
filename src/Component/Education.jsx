@@ -1,60 +1,110 @@
 import React from 'react'
+import { GraduationCap, Calendar, Building, Award } from 'lucide-react'
 
-const Education = ({textColor,bg,main}) => {
+const Education = ({currentTheme}) => {
+  const education = [
+    { 
+        period: "2022 - 2026", 
+        degree: "Master of Computer Applications (MCA)", 
+        institution: "Viva Institute of Technology", 
+        // score: "CGPA: 8.22",
+        icon: <GraduationCap className="w-5 h-5" />,
+        iconColor: "text-blue-600",
+        bgColor: "bg-blue-100"
+    },
+    { 
+        period: "2018 - 2021", 
+        degree: "Bachelor of Commerce (B.Com)", 
+        institution: "Viva College of Commerce", 
+        // score: "Graduated",
+        icon: <Building className="w-5 h-5" />,
+        iconColor: "text-green-600",
+        bgColor: "bg-green-100"
+    },
+    { 
+        period: "2016 - 2018", 
+        degree: "Higher Secondary (HSC)", 
+        institution: "Utkarsh Vidyalaya", 
+        // score: "Completed",
+        icon: <Award className="w-5 h-5" />,
+        iconColor: "text-purple-600",
+        bgColor: "bg-purple-100"
+    },
+    { 
+        period: "2015 - 2016", 
+        degree: "Secondary (SSC)", 
+        institution: "Lokmanya Hindi High School", 
+        // score: "Completed",
+        icon: <Award className="w-5 h-5" />,
+        iconColor: "text-orange-600",
+        bgColor: "bg-orange-100"
+    },
+  ];
+
+  // Adjust background colors for dark theme
+  const getDarkModeBg = (bgColor) => {
+      const colorMap = {
+          'bg-blue-100': 'dark:bg-blue-900/70',
+          'bg-green-100': 'dark:bg-green-900/70',
+          'bg-purple-100': 'dark:bg-purple-900/70',
+          'bg-orange-100': 'dark:bg-orange-900/70',
+          'bg-red-100': 'dark:bg-red-900/70',
+          'bg-indigo-100': 'dark:bg-indigo-900/70',
+          'bg-pink-100': 'dark:bg-pink-900/70',
+          'bg-yellow-100': 'dark:bg-yellow-900/70',
+          'bg-teal-100': 'dark:bg-teal-900/70',
+      };
+      return colorMap[bgColor] || 'dark:bg-gray-800';
+  };
+
   return (
-    <div className={`${bg} ${textColor} shadow-lg shadow-white-500/50 rounded-sm mt-3 ml-3 text-center max-xl:mr-3`}>
-            <div className='text-xl font-medium flex'>
-                <p className='ml-3 mt-3 max-xl:text-6xl max-xl:font-semibold'>Education</p>
+    <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-2xl p-6 mb-6`}>
+        <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg">
+                <GraduationCap className="w-6 h-6 text-white" />
             </div>
-            <div className='w-auto flex flex-wrap justify-center p-3 font-semibold'>
-                <ul className='w-full list-disc list-inside'>
-                    <li className='flex flex-col justify-between px-5'>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-xs max-xl:text-3xl`}>2022 - 2024</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className='text-sm max-xl:text-4xl'>MCA</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-base max-xl:text-4xl`}>Viva Institute of Technology</p>
-                        </span>
-                    </li>
-                    <li className='flex flex-col justify-between px-5 mt-3'>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-xs max-xl:text-3xl`}>2018 - 2021</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className='text-sm max-xl:text-4xl'>B.Com</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-base max-xl:text-4xl`}>Viva College of Commerce</p>
-                        </span>
-                    </li>
-                    <li className='flex flex-col justify-between px-5 mt-3'>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-xs max-xl:text-3xl`}>2016 - 2018</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className='text-sm max-xl:text-4xl'>HSC</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-base max-xl:text-4xl`}>Utkarsh Vidyalaya</p>
-                        </span>
-                    </li>
-                    <li className='flex flex-col justify-between px-5 mt-3'>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-xs max-xl:text-3xl`}>2015 - 2016</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className='text-sm max-xl:text-4xl'>SSC</p>
-                        </span>
-                        <span className='flex bg-transparent'>
-                        <p className={`${main} text-base max-xl:text-4xl`}>Lokmanya Hindi High School</p>
-                        </span>
-                    </li>
-                </ul>
-            </div>
+            <h2 className={`text-2xl font-bold ${currentTheme.textColor}`}>Education</h2>
         </div>
+        
+        <div className="space-y-4">
+            {education.map((edu, index) => (
+                <div 
+                    key={index} 
+                    className={`p-4 rounded-xl border ${currentTheme.border} hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${currentTheme.bg === 'bg-white' ? 'hover:bg-gray-50' : 'hover:bg-gray-800/50'}`}
+                >
+                    <div className="flex items-start gap-4">
+                        <div className={`p-3 rounded-xl ${edu.bgColor} ${getDarkModeBg(edu.bgColor)}`}>
+                            <div className={edu.iconColor}>
+                                {edu.icon}
+                            </div>
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                                <div>
+                                    <h3 className={`font-bold text-lg ${currentTheme.textColor}`}>{edu.degree}</h3>
+                                    <div className="flex items-center gap-2 mt-1">
+                                        <Calendar className="w-3 h-3 text-gray-400" />
+                                        <span className={`${currentTheme.main} text-sm`}>{edu.period}</span>
+                                    </div>
+                                </div>
+                                {edu.score && (
+                                    <div className="px-3 py-1 bg-green-100 dark:bg-green-900/70 text-green-800 dark:text-green-300 rounded-full text-sm font-medium whitespace-nowrap">
+                                        {edu.score}
+                                    </div>
+                                )}
+                            </div>
+                            
+                            <div className="flex items-center gap-2 mt-2">
+                                <Building className="w-4 h-4 text-gray-400" />
+                                <span className={`${currentTheme.main}`}>{edu.institution}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
   )
 }
 
