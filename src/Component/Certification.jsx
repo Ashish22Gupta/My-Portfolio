@@ -150,4 +150,4 @@ const Certification = ({currentTheme}) => {
     )
 }
 
-export default Certification;
+export default Certification
