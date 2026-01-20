@@ -147,7 +147,7 @@ const Card = () => {
                 </ul>
               </div>
               
-              <div className="mt-6 pt-6 border-t ${currentTheme.border}">
+              <div className={`mt-6 pt-6 border-t ${currentTheme.border}`}>
                 <h4 className={`font-semibold mb-3 ${currentTheme.textColor}`}>Technologies Used:</h4>
                 <div className="flex flex-wrap gap-2">
                   {['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'REST APIs', 'Figma'].map((tech) => (
