@@ -150,7 +150,7 @@ const Card = () => {
               <div className={`mt-6 pt-6 border-t ${currentTheme.border}`}>
                 <h4 className={`font-semibold mb-3 ${currentTheme.textColor}`}>Technologies Used:</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'REST APIs', 'Figma'].map((tech) => (
+                  {['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'REST APIs', 'Figma','Bootstrap 5'].map((tech) => (
                     <span key={tech} className={`px-3 py-1 rounded-full text-sm font-medium ${currentTheme.accent} text-white`}>
                       {tech}
                     </span>
