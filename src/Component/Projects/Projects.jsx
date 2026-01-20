@@ -1,23 +1,33 @@
 import React from 'react';
-import { ShoppingBag } from 'lucide-react';
 
 const Projects = (props) => {
-  const { textColor, bg, main, logo, title, description, technology } = props;
+  const { currentTheme, logo, title, description, technology } = props;
 
   return (
-    <div className={`${bg} shadow-lg shadow-white-500/50 mt-3 pt-3 pb-3 ml-3 mr-3 mb-3 text-slate-700 rounded-sm font-light w-fit h-fit`}>
-      <span className={`${main} flex ml-3 font-semibold max-xl:text-4xl`}>
-        <span className='mr-3 mt-1'>
-          {logo ? logo : <ShoppingBag size={15} className='max-xl:h-9 max-xl:w-9'/>}
-        </span>
-        {title ? title : "Product Management System"}
-      </span>
-      <span className={`${textColor} font-normal flex ml-10 mr-10 text-justify max-xl:text-3xl max-xl:ml-16 max-xl:mr-16`}>
-        {description ? description : "In this project, the Admin can perform CRUD operations on products and the customer can Login/Register and Order/Add to Cart products."}
-      </span>
-      <span className={`${main} text-justify flex ml-10 mr-10 font-medium max-xl:text-3xl max-xl:ml-16 max-xl:mr-16`}>
-        Technology: {technology ? technology : "HTML5, CSS3, Javascript, JAVA, SQL"}
-      </span>
+    <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-xl p-5 h-full border ${currentTheme.border} hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 group cursor-pointer`}>
+      <div className="flex items-start gap-4 mb-4">
+        <div className={`p-3 rounded-xl ${currentTheme.accent} text-white flex-shrink-0`}>
+          {logo}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className={`text-lg font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate`}>
+            {title}
+          </h3>
+          <p className={`${currentTheme.main} text-sm leading-relaxed mb-4 line-clamp-3`}>
+            {description}
+          </p>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {technology.split(', ').map((tech, index) => (
+              <span
+                key={index}
+                className={`px-2 py-1 rounded-full text-xs font-medium ${currentTheme.accent} text-white`}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
