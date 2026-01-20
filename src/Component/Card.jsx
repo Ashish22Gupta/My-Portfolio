@@ -7,7 +7,7 @@ import Certification from "./Certification";
 import Education from "./Education";
 import Publication from "./Projects/Publication";
 import Projects from "./Projects/Projects";
-import { Calculator, Dumbbell, FileLock, Landmark, Monitor, MonitorCheck, RectangleEllipsis, Clock, Worm, Timer, Construction, Sun, Moon, Palette, Briefcase, Users, Building, Database, Globe, Terminal, CheckCircle, Code, TrendingUp, Gamepad2, Scissors, HelpCircle, Calendar } from 'lucide-react';
+import { Calculator, Dumbbell, FileLock, Landmark, Monitor, MonitorCheck, RectangleEllipsis, Clock, Worm, Timer, Construction, Sun, Briefcase, Users, Building, Globe, Terminal, CheckCircle, Code, TrendingUp, Gamepad2, Scissors, HelpCircle, Calendar } from 'lucide-react';
 import Copyright from "./Projects/Copyright";
 import { useState } from "react";
 
@@ -206,7 +206,7 @@ const Card = () => {
               />
             </a>
 
-            {/* Basic Calculator - NEW */}
+            {/* Basic Calculator */}
             <a href="https://github.com/Ashish22Gupta/Basic-Calculator" target="_blank" rel="noopener noreferrer">
               <Projects
                 title="Arithmetic Calculator"
@@ -272,7 +272,7 @@ const Card = () => {
               />
             </a>
 
-            {/* Arithmetic Calculator Web */}
+            {/* Web Calculator */}
             <a href="https://basic-arithmatic-calculator.netlify.app" target="_blank" rel="noopener noreferrer">
               <Projects
                 title="Web Calculator"
