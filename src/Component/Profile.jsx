@@ -1,31 +1,54 @@
 import React from "react";
+import { Download, FileText, Briefcase, Clock } from 'lucide-react';
 
-const Profile = ({ textColor, bg,border }) => {
+const Profile = ({ currentTheme }) => {
   function PDF() {
-    window.location.href = `${process.env.PUBLIC_URL}/Ashish Gupta.pdf`;
+    window.open(`${process.env.PUBLIC_URL}/Ashish Gupta.pdf`, '_blank');
   }
 
   return (
-    <div className={`${bg} ${textColor} shadow-lg shadow-white-500/50 rounded-sm mt-3 ml-3 text-black flex items-center flex-col text-center max-xl:mr-3`}>
-      <img
-        src={`${process.env.PUBLIC_URL}/MyPhoto.jpg`}
-        className={`rounded-full h-40 w-40 border-solid border-[3px] ${border} mt-5 max-xl:h-72 max-xl:w-72 transition-transform transform hover:scale-110`}
-        alt="Ashish Gupta"
-      />
-      <div className="mt-3">
-        <p className="max-xl:text-6xl max-xl:font-semibold">Ashish Gupta</p>
+    <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-2xl p-6 mb-6 border ${currentTheme.border} text-center`}>
+      <div className="relative mb-6">
+        <img
+          src={`${process.env.PUBLIC_URL}/MyPhoto.jpg`}
+          className={`rounded-full h-40 w-40 mx-auto border-4 ${currentTheme.border} transition-all duration-500 hover:scale-110`}
+          alt="Ashish Gupta"
+        />
+        <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full p-3 shadow-lg">
+          <Briefcase className="w-5 h-5" />
+        </div>
       </div>
-      <div className="max-xl:text-4xl max-xl:mt-2">
-        <p>
-          ⚡ Junior Software Engineer | Open Source Enthusiast | JAVA | .NET | React ⚡
+      
+      <div className="mb-6">
+        <h1 className={`text-2xl font-bold mb-2 ${currentTheme.textColor}`}>Ashish Gupta</h1>
+        <div className="text-lg font-medium mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Junior Software Engineer | Full-Stack Developer
+        </div>
+        
+        {/* Experience Stats - Updated with gradient background */}
+        <div className="grid grid-cols-1 gap-3 mb-4">
+          <div className="text-center p-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Clock className="w-5 h-5 text-white" />
+              <div className="text-xl font-bold text-white">1 Year</div>
+            </div>
+            <div className="text-xs text-blue-100 font-medium">Internship Experience</div>
+          </div>
+        </div>
+        
+        <p className={`text-sm ${currentTheme.main}`}>
+          Specializing in Java, .NET, React, and modern web technologies. Passionate about building scalable applications and solving complex problems.
         </p>
-        <button
-          className="duration-500 transition-all outline-none mr-1 border border-solid border-gray-300 px-5 py-2 bg-transparent font-bold text-gray-300 uppercase focus:outline-none active:bg-gray-700 hover:bg-gray-300 hover:text-black mt-2 text-xs h-8 mb-4 max-xl:text-3xl max-xl:h-fit max-xl:w-fit max-xl:mt-5"
-          onClick={PDF}
-        >
-          See My Resume
-        </button>
       </div>
+      
+      <button
+        onClick={PDF}
+        className="group w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-[1.02] shadow-lg text-sm"
+      >
+        <Download className="w-4 h-4" />
+        Download Resume
+        <FileText className="w-4 h-4" />
+      </button>
     </div>
   );
 };
