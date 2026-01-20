@@ -1,18 +1,49 @@
 import React from 'react'
-const Publication = ({textColor,bg,main}) => {
+import { FileText, Calendar, User, ExternalLink } from 'lucide-react'
+
+const Publication = ({currentTheme}) => {
   return (
-    <div className={`flex flex-col`}>
-    <h1 className={`${textColor} text-2xl font-medium max-xl:text-6xl max-xl:font-semibold`}>Publication</h1>
-    <ul className={`${bg} ${textColor} text-center shadow-lg shadow-white-500/50 mt-3 pt-3 pb-3 mb-3 mr-3 rounded-sm font-light`} >
-      <p className='font-medium max-xl:text-4xl max-xl:mt-2'>DATA WAREHOUSE AND DATA MINING FOR BUSINESS INTELLIGENCE</p>
-      <p className='max-xl:text-3xl max-xl:mt-2'>NCRENB 2024</p>
-      <p className='max-xl:text-3xl max-xl:mt-2'>Author: Ashish Gupta</p>
-      <p className={`${main} text-justify ml-5 mr-5 font-serif max-xl:text-3xl max-xl:mt-2`}>This paper presents a comprehensive exploration of the integration of data warehouse and data mining technologies to enhance business intelligence capabilities. Beginning with an overview of data warehouse architecture and its significance in centralizing and analyzing data, the paper categorizes data mining techniques into supervised, unsupervised, and semi- supervised learning, elucidating their roles in predictive analytics, customer segmentation, and market analysis.</p>
-    <div className='mt-3'>
-    <button className='bg-indigo-500 text-white font-semibold cursor-pointer rounded-lg px-2 max-xl:text-3xl max-xl:mt-2'><a href={`${process.env.PUBLIC_URL}/Research Paper.pdf`}>View Publication</a></button>
-    </div>
-    </ul>
+    <div className="w-full">
+      <div className="flex items-center gap-3 mb-6">
+        <FileText className="w-8 h-8 text-blue-500" />
+        <h1 className={`text-2xl font-bold ${currentTheme.textColor}`}>Publications</h1>
+      </div>
+      
+      <div className={`${currentTheme.card} ${currentTheme.shadow} rounded-2xl p-6 border ${currentTheme.border}`}>
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <h3 className={`text-xl font-bold mb-2 ${currentTheme.textColor}`}>Data Warehouse and Data Mining for Business Intelligence</h3>
+            <div className="flex items-center gap-4 mb-3">
+              <span className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <Calendar className="w-4 h-4" />
+                NCRENB 2024
+              </span>
+              <span className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <User className="w-4 h-4" />
+                Ashish Gupta
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <p className={`${currentTheme.main} mb-6 leading-relaxed`}>
+          This paper presents a comprehensive exploration of the integration of data warehouse and data mining technologies to enhance business intelligence capabilities. Beginning with an overview of data warehouse architecture and its significance in centralizing and analyzing data, the paper categorizes data mining techniques into supervised, unsupervised, and semi-supervised learning, elucidating their roles in predictive analytics, customer segmentation, and market analysis.
+        </p>
+        
+        <button className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105">
+          <a 
+            href={`${process.env.PUBLIC_URL}/Research Paper.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            View Publication
+            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </button>
+      </div>
     </div>
   )
 }
+
 export default Publication
