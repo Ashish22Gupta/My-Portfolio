@@ -23,7 +23,7 @@ const Theme = ({ theme, setTheme, themes, currentTheme }) => {
         </div>
         
         <Menu as="div" className="relative">
-          <MenuButton className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium ${currentTheme.accent} text-white hover:opacity-90 transition-all`}>
+          <MenuButton className={`inline-flex items-center justify-center gap-2 rounded-xl px-2 py-2 text-sm font-medium ${currentTheme.accent} text-white hover:opacity-90 transition-all`}>
             <Palette className="w-5 h-5" />
             Change Theme
             <ChevronDownIcon className="w-5 h-5" />
